@@ -1,4 +1,4 @@
-package magicsquare;
+package net.nechifor.magicsquare;
 
 public interface Ascultator
 {

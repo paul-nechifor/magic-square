@@ -1,4 +1,4 @@
-package magicsquare;
+package net.nechifor.magicsquare;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

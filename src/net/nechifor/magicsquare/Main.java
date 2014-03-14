@@ -1,4 +1,4 @@
-package magicsquare;
+package net.nechifor.magicsquare;
 
 import java.awt.EventQueue;
 import javax.swing.UIManager;
