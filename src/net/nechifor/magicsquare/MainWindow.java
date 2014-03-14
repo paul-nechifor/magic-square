@@ -4,20 +4,20 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
-public class Fereastra extends JFrame
+public class MainWindow extends JFrame
 {
-    public Fereastra(Panou panou)
+    public MainWindow(MainPanel panou)
     {
-        setTitle("Pătrat magic");
+        setTitle("Magic square");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(panou);
         pack();
         setVisible(true);
         setResizable(false);
-        punePeMijloc();
+        centerWindow();
     }
 
-    private void punePeMijloc()
+    private void centerWindow()
     {
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();

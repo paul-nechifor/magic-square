@@ -14,8 +14,8 @@ public class Main
                         UIManager.getSystemLookAndFeelClassName());
             } catch (Exception e) {}
 
-            Panou panou = new Panou(498, 524);
-            Fereastra fereastra = new Fereastra(panou);
+            MainPanel panel = new MainPanel(498, 524);
+            MainWindow window = new MainWindow(panel);
         }});
     }
 }

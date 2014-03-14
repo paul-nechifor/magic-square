@@ -6,7 +6,7 @@ import javax.swing.UIManager;
 
 public class Applet extends java.applet.Applet
 {
-    private Panou panou;
+    private MainPanel panel;
 
     @Override
     public void init()
@@ -24,8 +24,8 @@ public class Applet extends java.applet.Applet
                         UIManager.getSystemLookAndFeelClassName());
             } catch (Exception e) {}
 
-            panou = new Panou(getWidth(), getHeight());
-            add(panou, BorderLayout.CENTER);
+            panel = new MainPanel(getWidth(), getHeight());
+            add(panel, BorderLayout.CENTER);
         }});
 	}
 

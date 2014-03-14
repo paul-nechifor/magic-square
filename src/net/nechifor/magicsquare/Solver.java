@@ -3,13 +3,13 @@ package net.nechifor.magicsquare;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class Rezolvator
+public class Solver
 {
     private int n;
-    private Ascultator ascultator;
+    private Listener ascultator;
     private int interval;
 
-    public Rezolvator(int n, Ascultator ascultator, int peSecunda)
+    public Solver(int n, Listener ascultator, int peSecunda)
     {
         this.n = n;
         this.ascultator = ascultator;
@@ -57,10 +57,10 @@ public class Rezolvator
 
             if (System.currentTimeMillis() - ultimaAnuntare > interval)
             {
-                ascultator.stareCurenta(mat);
+                ascultator.currentState(mat);
                 ultimaAnuntare = System.currentTimeMillis();
             }
-            ascultator.repornire();
+            ascultator.restart();
 
             // Calculez sumele și scorul curent;
             scorCur = 0;
@@ -87,7 +87,7 @@ public class Rezolvator
                 {
                     if (System.currentTimeMillis() - ultimaAnuntare > interval)
                     {
-                        ascultator.stareCurenta(mat);
+                        ascultator.currentState(mat);
                         ultimaAnuntare = System.currentTimeMillis();
                     }
 
@@ -180,8 +180,8 @@ public class Rezolvator
                     // Dacă scorul e zero, s-a ajuns la o soluție.
                     if (scorCur == 0)
                     {
-                        ascultator.stareCurenta(mat);
-                        ascultator.terminare();
+                        ascultator.currentState(mat);
+                        ascultator.finish();
                         return;
                     }
 
@@ -239,10 +239,10 @@ public class Rezolvator
 
             if (System.currentTimeMillis() - ultimaAnuntare > interval)
             {
-                ascultator.stareCurenta(mat);
+                ascultator.currentState(mat);
                 ultimaAnuntare = System.currentTimeMillis();
             }
-            ascultator.repornire();
+            ascultator.restart();
 
             // Calculez sumele și scorul curent;
             scorCur = 0;
@@ -271,7 +271,7 @@ public class Rezolvator
 
                 if (System.currentTimeMillis() - ultimaAnuntare > interval)
                 {
-                    ascultator.stareCurenta(mat);
+                    ascultator.currentState(mat);
                     ultimaAnuntare = System.currentTimeMillis();
                 }
 
@@ -380,8 +380,8 @@ public class Rezolvator
                 // Dacă scorul e zero, s-a ajuns la o soluție.
                 if (scorCur == 0)
                 {
-                    ascultator.stareCurenta(mat);
-                    ascultator.terminare();
+                    ascultator.currentState(mat);
+                    ascultator.finish();
                     return;
                 }
             }
@@ -440,10 +440,10 @@ public class Rezolvator
 
             if (System.currentTimeMillis() - ultimaAnuntare > interval)
             {
-                ascultator.stareCurenta(mat);
+                ascultator.currentState(mat);
                 ultimaAnuntare = System.currentTimeMillis();
             }
-            ascultator.repornire();
+            ascultator.restart();
 
             // Calculez sumele și scorul curent;
             scorCur = 0;
@@ -477,7 +477,7 @@ public class Rezolvator
             {
                 if (System.currentTimeMillis() - ultimaAnuntare > interval)
                 {
-                    ascultator.stareCurenta(mat);
+                    ascultator.currentState(mat);
                     ultimaAnuntare = System.currentTimeMillis();
                 }
 
@@ -589,8 +589,8 @@ public class Rezolvator
                     // Dacă scorul e zero, s-a ajuns la o soluție.
                     if (scorCur == 0)
                     {
-                        ascultator.stareCurenta(mat);
-                        ascultator.terminare();
+                        ascultator.currentState(mat);
+                        ascultator.finish();
                         return;
                     }
 

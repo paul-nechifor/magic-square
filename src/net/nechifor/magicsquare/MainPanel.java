@@ -20,7 +20,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Panou extends JPanel implements Ascultator
+public class MainPanel extends JPanel implements Listener
 {
     static private int BLANA = 0;
 
@@ -51,7 +51,7 @@ public class Panou extends JPanel implements Ascultator
     static Color negru = new Color(80, 80, 80);
 
 
-    public Panou(int lungime, int inaltime)
+    public MainPanel(int lungime, int inaltime)
     {
         this.setPreferredSize(new Dimension(lungime, inaltime));
         this.lungime = lungime;
@@ -170,7 +170,7 @@ public class Panou extends JPanel implements Ascultator
         gasesteBtn.setEnabled(false);
         copiazaBtn.setEnabled(false);
 
-        final Rezolvator rezolvator = new Rezolvator(n, this, 10);
+        final Solver rezolvator = new Solver(n, this, 10);
 
         Runnable runnable = new Runnable()
         {
@@ -188,19 +188,19 @@ public class Panou extends JPanel implements Ascultator
         new Thread(runnable).start();
     }
 
-    public void stareCurenta(int[][] patratul)
+    public void currentState(int[][] patratul)
     {
         this.patratul = patratul;
         repaint();
     }
 
-    public void repornire()
+    public void restart()
     {
         iteratia++;
         iteratiaLb.setText(String.format("Iterația: %04d", iteratia));
     }
 
-    public void terminare()
+    public void finish()
     {
         algoritmCb.setEnabled(true);
         ordineCb.setEnabled(true);
