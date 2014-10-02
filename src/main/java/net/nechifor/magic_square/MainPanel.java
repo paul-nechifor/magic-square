@@ -1,27 +1,13 @@
 package net.nechifor.magic_square;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-public class MainPanel extends JPanel implements Listener
-{
+public class MainPanel extends JPanel implements Listener {
     static private int BLANA = 0;
 
     private int[][] patratul;
@@ -51,8 +37,7 @@ public class MainPanel extends JPanel implements Listener
     static Color negru = new Color(80, 80, 80);
 
 
-    public MainPanel(int lungime, int inaltime)
-    {
+    public MainPanel(int lungime, int inaltime) {
         this.setPreferredSize(new Dimension(lungime, inaltime));
         this.lungime = lungime;
         this.inaltime = inaltime;
@@ -60,8 +45,7 @@ public class MainPanel extends JPanel implements Listener
         adaugaComponente();
     }
 
-    private void adaugaComponente()
-    {
+    private void adaugaComponente() {
         int ordinulMaxim = 48;
         String[] ordine = new String[ordinulMaxim - 3 + 1];
         for (int i = 0; i < ordine.length; i++)
@@ -77,7 +61,7 @@ public class MainPanel extends JPanel implements Listener
         JLabel l = new JLabel("Algoritm: ");
         l.setForeground(negru);
         panouJos.add(l);
-        algoritmCb = new JComboBox(new String[] {"FIHC", "BIHC", "LAHC"});
+        algoritmCb = new JComboBox(new String[]{"FIHC", "BIHC", "LAHC"});
         algoritmCb.setSelectedIndex(1);
         algoritmCb.setMaximumSize(algoritmCb.getPreferredSize());
         panouJos.add(algoritmCb);
@@ -113,25 +97,20 @@ public class MainPanel extends JPanel implements Listener
 
         this.add(panouJos);
 
-        gasesteBtn.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
+        gasesteBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 int n = ordineCb.getSelectedIndex() + 3;
                 porneste(n);
             }
         });
 
-        copiazaBtn.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                int pozitii = new Integer(n*n).toString().length() + 1;
+        copiazaBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int pozitii = new Integer(n * n).toString().length() + 1;
                 String format = "%" + pozitii + "d";
 
                 StringBuilder tabel = new StringBuilder();
-                for (int i = 0; i < n; i++)
-                {
+                for (int i = 0; i < n; i++) {
                     for (int j = 0; j < n; j++)
                         tabel.append(String.format(format, patratul[i][j]));
                     tabel.append("\n");
@@ -146,8 +125,7 @@ public class MainPanel extends JPanel implements Listener
         });
     }
 
-    private void porneste(int n)
-    {
+    private void porneste(int n) {
         this.n = n;
         int n2 = n * n;
         this.M = (n * (n2 + 1)) / 2;
@@ -172,10 +150,8 @@ public class MainPanel extends JPanel implements Listener
 
         final Solver rezolvator = new Solver(n, this, 10);
 
-        Runnable runnable = new Runnable()
-        {
-            public void run()
-            {
+        Runnable runnable = new Runnable() {
+            public void run() {
                 int algoritm = algoritmCb.getSelectedIndex();
                 if (algoritm == 0)
                     rezolvator.startFirstImprovementHillClimbing();
@@ -188,20 +164,17 @@ public class MainPanel extends JPanel implements Listener
         new Thread(runnable).start();
     }
 
-    public void currentState(int[][] patratul)
-    {
-        this.patratul = patratul;
+    public void currentState(int[][] square) {
+        this.patratul = square;
         repaint();
     }
 
-    public void restart()
-    {
+    public void restart() {
         iteratia++;
         iteratiaLb.setText(String.format("Iterația: %04d", iteratia));
     }
 
-    public void finish()
-    {
+    public void finish() {
         algoritmCb.setEnabled(true);
         ordineCb.setEnabled(true);
         gasesteBtn.setEnabled(true);
@@ -209,11 +182,10 @@ public class MainPanel extends JPanel implements Listener
     }
 
     @Override
-    protected void paintComponent(Graphics g)
-    {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2d = (Graphics2D)g;
+        Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
@@ -223,31 +195,28 @@ public class MainPanel extends JPanel implements Listener
         g2d.fillRect(0, 0, lungime, inaltime);
 
         // Desenează un tabel gol.
-        if (patratul == null)
-        {
+        if (patratul == null) {
             g2d.setPaint(culoareLinii);
-            g2d.drawRect(BLANA, BLANA, lungime-2*BLANA-1, lungime-2*BLANA-1);
+            g2d.drawRect(BLANA, BLANA, lungime - 2 * BLANA - 1, lungime - 2 * BLANA - 1);
             return;
         }
 
         g2d.setPaint(culoareLinii);
         g2d.setStroke(new BasicStroke((float) 1));
 
-        g2d.setFont(new Font("Dialog", Font.PLAIN, (int) (patrat/2.3)));
+        g2d.setFont(new Font("Dialog", Font.PLAIN, (int) (patrat / 2.3)));
         FontMetrics metrics = g2d.getFontMetrics();
         int fh = metrics.getHeight();
         fh -= fh / 4;
 
         scorDiagonale[0] = 0;
         scorDiagonale[1] = 0;
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++) {
             scorDiagonale[0] += patratul[i][i];
             scorDiagonale[1] += patratul[i][n - i - 1];
             scorLinii[i] = 0;
             scorColoane[i] = 0;
-            for (int j = 0; j < n; j++)
-            {
+            for (int j = 0; j < n; j++) {
                 scorLinii[i] += patratul[i][j];
                 scorColoane[i] += patratul[j][i];
             }
@@ -266,12 +235,11 @@ public class MainPanel extends JPanel implements Listener
         for (int i = 0; i < n; i++)
             culoare[i][i] += 4 * (scorDiagonale[0] / gresealaMaxima);
         for (int i = 0; i < n; i++)
-            culoare[i][n-i-1] += 4 * (scorDiagonale[1] / gresealaMaxima);
-        
+            culoare[i][n - i - 1] += 4 * (scorDiagonale[1] / gresealaMaxima);
+
 
         for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-            {
+            for (int j = 0; j < n; j++) {
                 int cul = (int) Math.ceil(255 * culoare[i][j]);
                 if (cul > 0)
                     cul += 30;
@@ -287,8 +255,8 @@ public class MainPanel extends JPanel implements Listener
                 int fw = metrics.stringWidth(numar);
                 g2d.setPaint(negru);
                 g2d.drawString(numar,
-                        startX + j * patrat + (patrat-fw)/2,
-                        startY + i * patrat + fh/2 + patrat/2);
+                        startX + j * patrat + (patrat - fw) / 2,
+                        startY + i * patrat + fh / 2 + patrat / 2);
             }
     }
 }

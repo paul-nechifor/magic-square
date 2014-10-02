@@ -1,13 +1,10 @@
 package net.nechifor.magic_square;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
-public class MainWindow extends JFrame
-{
-    public MainWindow(MainPanel panou)
-    {
+public class MainWindow extends JFrame {
+    public MainWindow(MainPanel panou) {
         setTitle("Magic square");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(panou);
@@ -17,10 +14,9 @@ public class MainWindow extends JFrame
         centerWindow();
     }
 
-    private void centerWindow()
-    {
+    private void centerWindow() {
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
-        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
+        setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
     }
 }
