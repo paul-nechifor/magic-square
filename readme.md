@@ -17,6 +17,10 @@ Run the Swing GUI:
 
     java -cp target/magic-square-*.jar net.nechifor.magic_square.Main
 
+Try it from the console:
+
+    java -cp target/magic-square-*.jar net.nechifor.magic_square.Console BIHC 16
+
 ## License
 
 MIT
