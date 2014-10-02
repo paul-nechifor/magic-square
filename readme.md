@@ -1,12 +1,21 @@
 # Magic Square
 
-The is a Java program (Swing GUI and applet) that searches for [magic
-squares][msq].
+The is a Java program that searches for [magic squares][msq].
 
 ![magic square cover](screenshot.png)
 
 You can [read more about it][pm] on my page (in Romanian). Sorry about the bad
 code, I wrote it a while ago.
+
+## Run it
+
+Build it:
+
+    mvn package
+
+Run the Swing GUI:
+
+    java -cp target/magic-square-*.jar net.nechifor.magic_square.Main
 
 ## License
 

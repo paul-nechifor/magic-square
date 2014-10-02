@@ -1,4 +1,4 @@
-package net.nechifor.magicsquare;
+package net.nechifor.magic_square;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

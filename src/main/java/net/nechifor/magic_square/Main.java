@@ -1,7 +1,7 @@
-package net.nechifor.magicsquare;
+package net.nechifor.magic_square;
 
-import java.awt.EventQueue;
-import javax.swing.UIManager;
+import javax.swing.*;
+import java.awt.*;
 
 public class Main
 {
