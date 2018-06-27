@@ -1,3 +1,7 @@
+# This repository has been moved to [gitlab.com/paul-nechifor/magic-square](http://gitlab.com/paul-nechifor/magic-square).
+
+Old readme:
+
 # Magic Square
 
 The is a Java program that searches for [magic squares][msq].
